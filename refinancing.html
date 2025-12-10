@@ -99,11 +99,11 @@
         .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
                 @media (max-width: 900px) {
-            .menu-toggle { display: block; position: fixed; top: 2.35rem; right: calc(50% - 170px); z-index: 10000; }
+            .menu-toggle { display: block; position: relative; z-index: 9999; }
             .nav-links {
                 display: flex;
                 position: fixed;
-                z-index: 9999;
+                z-index: 9990;
                 top: 0; left: 0; right: 0; bottom: 0;
                 background: var(--black);
                 flex-direction: column;
