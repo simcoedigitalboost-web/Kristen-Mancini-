@@ -204,10 +204,16 @@
         @media (max-width: 900px) {
             .menu-toggle {
                 display: block;
+                position: fixed;
+                top: 2.35rem;
+                right: calc(50% - 170px);
+                z-index: 10000;
             }
 
             .nav-links {
+                display: flex;
                 position: fixed;
+                z-index: 9999;
                 top: 0;
                 left: 0;
                 right: 0;
@@ -1374,7 +1380,7 @@
                 <h4>Contact</h4>
                 <ul>
                     <li><a href="tel:705-555-0123">705-555-0123</a></li>
-                    <li><a href="mailto:kristen@kmmortgage.ca">kristen@kmmortgage.ca</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#d7bca5bea4a3b2b997bcbabab8a5a3b0b6b0b2f9b4b6"><span class="__cf_email__" data-cfemail="7e150c170d0a1b103e151313110c0a191f191b501d1f">[email&#160;protected]</span></a></li>
                     <li><a href="https://instagram.com/kristen.mancini_">Instagram</a></li>
                 </ul>
             </div>
@@ -1385,7 +1391,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -1408,12 +1414,4 @@
 
         // Close menu when clicking a non-dropdown link
         navLinks.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                dropdowns.forEach(d => d.classList.remove('open'));
-            });
-        });
-    </script>
-</body>
-</html>
+            link.addEventListener('cl

@@ -200,10 +200,16 @@
         @media (max-width: 900px) {
             .menu-toggle {
                 display: block;
+                position: fixed;
+                top: 2.35rem;
+                right: calc(50% - 170px);
+                z-index: 10000;
             }
 
             .nav-links {
+                display: flex;
                 position: fixed;
+                z-index: 9999;
                 top: 0;
                 left: 0;
                 right: 0;
@@ -757,7 +763,7 @@
                             </svg>
                         </div>
                         <div>
-                            <a href="mailto:kristen@kmmortgage.ca">kristen@kmmortgage.ca</a>
+                            <a href="/cdn-cgi/l/email-protection#d5bea7bca6a1b0bb95beb8b8baa7a1b2b4b2b0fbb6b4"><span class="__cf_email__" data-cfemail="b2d9c0dbc1c6d7dcf2d9dfdfddc0c6d5d3d5d79cd1d3">[email&#160;protected]</span></a>
                             <span>I respond within 24 hours</span>
                         </div>
                     </li>
@@ -802,7 +808,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -825,12 +831,4 @@
 
         // Close menu when clicking a non-dropdown link
         navLinks.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                dropdowns.forEach(d => d.classList.remove('open'));
-            });
-        });
-    </script>
-</body>
-</html>
+            link.addEventListener('cl

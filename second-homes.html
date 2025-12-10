@@ -14,7 +14,8 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Outfit', sans-serif; font-size: 17px; line-height: 1.7; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
 
-        nav { position: fixed; top: 2rem; left: 50%; transform: translateX(-50%); z-index: 1000; background: var(--black); padding: 0.85rem 1.75rem; border-radius: 100px; display: flex; align-items: center; gap: 2rem; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        nav { position: fixed;
+                top: 2rem; left: 50%; transform: translateX(-50%); z-index: 1000; background: var(--black); padding: 0.85rem 1.75rem; border-radius: 100px; display: flex; align-items: center; gap: 2rem; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
         .logo { font-weight: 700; font-size: 1rem; color: var(--warm-white); text-decoration: none; white-space: nowrap; }
         .nav-links { display: flex; gap: 1.25rem; list-style: none; }
         .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; white-space: nowrap; }
@@ -95,9 +96,11 @@
         .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
                 @media (max-width: 900px) {
-            .menu-toggle { display: block; }
+            .menu-toggle { display: block; position: fixed; top: 2.35rem; right: calc(50% - 170px); z-index: 10000; }
             .nav-links {
+                display: flex;
                 position: fixed;
+                z-index: 9999;
                 top: 0; left: 0; right: 0; bottom: 0;
                 background: var(--black);
                 flex-direction: column;
@@ -348,7 +351,7 @@
                 <h4>Contact</h4>
                 <ul>
                     <li><a href="tel:705-555-0123">705-555-0123</a></li>
-                    <li><a href="mailto:kristen@kmmortgage.ca">kristen@kmmortgage.ca</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#a3c8d1cad0d7c6cde3c8cececcd1d7c4c2c4c68dc0c2"><span class="__cf_email__" data-cfemail="3c574e554f4859527c575151534e485b5d5b59125f5d">[email&#160;protected]</span></a></li>
                     <li><a href="https://instagram.com/kristen.mancini_">Instagram</a></li>
                 </ul>
             </div>
@@ -359,7 +362,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -382,12 +385,4 @@
 
         // Close menu when clicking a non-dropdown link
         navLinks.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                dropdowns.forEach(d => d.classList.remove('open'));
-            });
-        });
-    </script>
-</body>
-</html>
+            link.addEventListener('cl

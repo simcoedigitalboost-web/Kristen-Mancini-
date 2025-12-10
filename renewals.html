@@ -170,9 +170,11 @@
         .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
                 @media (max-width: 900px) {
-            .menu-toggle { display: block; }
+            .menu-toggle { display: block; position: fixed; top: 2.35rem; right: calc(50% - 170px); z-index: 10000; }
             .nav-links {
+                display: flex;
                 position: fixed;
+                z-index: 9999;
                 top: 0; left: 0; right: 0; bottom: 0;
                 background: var(--black);
                 flex-direction: column;
@@ -621,7 +623,7 @@
                 <h4>Contact</h4>
                 <ul>
                     <li><a href="tel:705-555-0123">705-555-0123</a></li>
-                    <li><a href="mailto:kristen@kmmortgage.ca">kristen@kmmortgage.ca</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#0368716a7077666d43686e6e6c7177646264662d6062"><span class="__cf_email__" data-cfemail="5239203b2126373c12393f3f3d2026353335377c3133">[email&#160;protected]</span></a></li>
                     <li><a href="https://instagram.com/kristen.mancini_">Instagram</a></li>
                 </ul>
             </div>
@@ -632,7 +634,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -655,12 +657,4 @@
 
         // Close menu when clicking a non-dropdown link
         navLinks.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                dropdowns.forEach(d => d.classList.remove('open'));
-            });
-        });
-    </script>
-</body>
-</html>
+            link.addEventListener('cl
