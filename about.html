@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Kristen Mancini | KM Mortgage - Orillia & Barrie Mortgage Agent</title>
+    <meta name="description" content="Meet Kristen Mancini, mortgage agent serving Orillia, Barrie, and Simcoe County. A mom helping families feel confident about their mortgage decisions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --charcoal: #1a1a1a;
+            --warm-white: #f8f6f3;
+            --cream: #efe9e1;
+            --gold: #c4a44e;
+            --gold-bright: #d4b85e;
+            --terracotta: #c17f59;
+            --sage: #7d8c7a;
+            --text: #2d2d2d;
+            --text-light: #6b6b6b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--warm-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: var(--black);
+            padding: 0.85rem 1.75rem;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--warm-white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.25rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--black) !important;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-bright) !important;
+        }
+
+        /* Mobile Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .dropdown-toggle::after {
+            content: '';
+            border: solid rgba(255,255,255,0.7);
+            border-width: 0 1.5px 1.5px 0;
+            padding: 2.5px;
+            transform: rotate(45deg);
+            margin-top: -2px;
+            transition: transform 0.2s;
+        }
+
+        .dropdown:hover .dropdown-toggle::after {
+            transform: rotate(-135deg);
+            margin-top: 2px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--black);
+            border-radius: 16px;
+            padding: 0.75rem 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1.5rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--gold);
+            background: rgba(255,255,255,0.05);
+        }
+
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--warm-white);
+            margin: 6px 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--black);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+
+            .nav-cta {
+                padding: 1rem 2rem;
+                font-size: 1.25rem;
+            }
+            .dropdown-toggle::after { display: none; }
+            
+            .dropdown-menu {
+                position: static;
+                transform: none;
+                background: transparent;
+                box-shadow: none;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0;
+                opacity: 1;
+                visibility: visible;
+                transition: max-height 0.3s ease;
+                min-width: auto;
+            }
+            
+            .dropdown.open .dropdown-menu {
+                max-height: 300px;
+                padding: 0.5rem 0;
+            }
+            
+            .dropdown-menu a {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 4rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-header::before {
+            content: 'About';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 18vw;
+            font-weight: 700;
+            color: var(--cream);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--terracotta);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-tag::before,
+        .section-tag::after {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--terracotta);
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            color: var(--black);
+            letter-spacing: -1px;
+        }
+
+        .page-header h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        /* Main About Section */
+        .about-main {
+            padding: 4rem 4rem 8rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-images {
+            position: relative;
+            height: 700px;
+        }
+
+        .about-img-1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70%;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            z-index: 2;
+        }
+
+        .about-img-2 {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60%;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            z-index: 1;
+        }
+
+        .about-decoration {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: var(--gold);
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+
+        .about-text p:first-of-type {
+            font-size: 1.25rem;
+            color: var(--text);
+        }
+
+        .signature {
+            margin-top: 2.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--cream);
+        }
+
+        .signature-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-style: italic;
+            color: var(--black);
+            margin-bottom: 0.25rem;
+        }
+
+        .signature-title {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            background: var(--charcoal);
+            padding: 8rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy::before {
+            content: '"';
+            position: absolute;
+            top: 2rem;
+            left: 4rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 20rem;
+            color: rgba(255,255,255,0.03);
+            line-height: 1;
+        }
+
+        .philosophy-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .philosophy blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 400;
+            color: var(--warm-white);
+            line-height: 1.5;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .philosophy cite {
+            color: var(--gold);
+            font-style: normal;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Values Section */
+        .values {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .values-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--cream);
+            border-radius: 24px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        .value-card:nth-child(2) {
+            background: var(--black);
+            color: var(--warm-white);
+        }
+
+        .value-card:nth-child(2) h3 {
+            color: var(--warm-white);
+        }
+
+        .value-card:nth-child(2) p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .value-card:nth-child(2) .value-icon {
+            background: var(--gold);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--charcoal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+
+        .value-icon svg {
+            width: 36px;
+            height: 36px;
+            color: var(--gold);
+        }
+
+        .value-card:nth-child(2) .value-icon svg {
+            color: var(--black);
+        }
+
+        .value-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Credentials */
+        .credentials {
+            background: var(--cream);
+            padding: 6rem 4rem;
+        }
+
+        .credentials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .credential-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .credential-item .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .credential-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--black);
+            padding: 8rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            color: var(--warm-white);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .cta h2 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.15rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            padding: 1.25rem 2.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-bright);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s;
+        }
+
+        .btn-primary:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 5rem 4rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .logo {
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .footer-column h4 {
+            color: var(--warm-white);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-main {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                padding: 4rem 2rem;
+            }
+
+            .about-images {
+                height: 500px;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .credentials-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.75rem 1.5rem;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .page-header {
+                padding: 8rem 2rem 3rem;
+            }
+
+            .philosophy {
+                padding: 5rem 2rem;
+            }
+
+            .values {
+                padding: 5rem 2rem;
+            }
+
+            .credentials {
+                padding: 4rem 2rem;
+            }
+
+            .credentials-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .credential-item .number {
+                font-size: 2.5rem;
+            }
+
+            .cta {
+                padding: 5rem 2rem;
+            }
+
+            footer {
+                padding: 4rem 2rem 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav>
+        <a href="index.html" class="logo">KM Mortgage</a>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="services.html" class="dropdown-toggle">Services</a>
+                <ul class="dropdown-menu">
+                    <li><a href="first-time-buyers.html">First-Time Buyers</a></li>
+                    <li><a href="self-employed.html">Self-Employed</a></li>
+                    <li><a href="renewals.html">Renewals</a></li>
+                    <li><a href="refinancing.html">Refinancing</a></li>
+                    <li><a href="second-homes.html">Second Homes</a></li>
+                    <li><a href="new-construction.html">New Construction</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="orillia.html" class="dropdown-toggle">Areas</a>
+                <ul class="dropdown-menu">
+                    <li><a href="orillia.html">Orillia</a></li>
+                    <li><a href="barrie.html">Barrie</a></li>
+                    <li><a href="simcoe-county.html">Simcoe County</a></li>
+                    <li><a href="muskoka.html">Muskoka</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html" class="nav-cta">Let's Talk</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="page-header-content">
+            <div class="section-tag">Get to Know Me</div>
+            <h1>The person behind <em>your mortgage</em></h1>
+        </div>
+    </header>
+
+    <!-- Main About Section -->
+    <section class="about-main">
+        <div class="about-images">
+            <img src="kristen-headshot.jpg" alt="Kristen Mancini - Professional" class="about-img-1">
+            <img src="kristen-casual.jpg" alt="Kristen Mancini" class="about-img-2">
+            <div class="about-decoration"></div>
+        </div>
+        <div class="about-text">
+            <h2>I believe buying a home should feel exciting—not overwhelming.</h2>
+            <p>I'm Kristen Mancini, and I help families in Orillia, Barrie, and across Simcoe County navigate one of the biggest financial decisions of their lives.</p>
+            <p>Before getting into mortgages, I earned my Bachelor of Commerce from McMaster University. But honestly? What prepared me most for this work wasn't a classroom—it was becoming a mom. When you're responsible for your family's future, you see finances differently. You understand what's at stake.</p>
+            <p>That's why I don't just process paperwork. I take the time to understand your situation, explain your options in plain English, and make sure you're not leaving money on the table. Too many first-time buyers miss out on grants and programs simply because nobody told them they existed.</p>
+            <p>I'm here to change that.</p>
+            <div class="signature">
+                <div class="signature-name">Kristen Mancini</div>
+                <div class="signature-title">Mortgage Agent | BRX Mortgage Inc.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy">
+        <div class="philosophy-content">
+            <blockquote>"Your bank works for the bank. I work for you. That's not just a tagline—it's how I run my entire practice."</blockquote>
+            <cite>— Kristen Mancini</cite>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+        <div class="values-header">
+            <div class="section-tag">What I Stand For</div>
+            <h2>How I approach every client</h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+                    </svg>
+                </div>
+                <h3>Education First</h3>
+                <p>I don't just hand you a rate—I make sure you understand every option, every program, and every decision you're making.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                    </svg>
+                </div>
+                <h3>Your Advocate</h3>
+                <p>I fight for your best deal, not the lender's. With access to 50+ lenders, I can shop the market to find what actually works for you.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                    </svg>
+                </div>
+                <h3>Real Relationship</h3>
+                <p>I'm not a call centre. When you work with me, you actually work with me—and I'm here long after closing day.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credentials -->
+    <section class="credentials">
+        <div class="credentials-container">
+            <div class="credential-item">
+                <div class="number">6+</div>
+                <p>Years in the Mortgage Industry</p>
+            </div>
+            <div class="credential-item">
+                <div class="number">50+</div>
+                <p>Lender Partners</p>
+            </div>
+            <div class="credential-item">
+                <div class="number">100s</div>
+                <p>Families Helped</p>
+            </div>
+            <div class="credential-item">
+                <div class="number">$0</div>
+                <p>Cost to You</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Let's talk about <em>your</em> goals</h2>
+            <p>Whether you're buying your first home or your fifth, I'm here to help you make a confident decision.</p>
+            <a href="contact.html" class="btn-primary">
+                Book Your Free Consultation
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">KM Mortgage</a>
+                <p>Helping families in Orillia, Barrie, and Simcoe County feel confident about their mortgage decisions.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="first-time-buyers.html">First-Time Buyers</a></li>
+                    <li><a href="self-employed.html">Self-Employed</a></li>
+                    <li><a href="renewals.html">Renewals</a></li>
+                    <li><a href="refinancing.html">Refinancing</a></li>
+                    <li><a href="second-homes.html">Second Homes</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Areas</h4>
+                <ul>
+                    <li><a href="orillia.html">Orillia</a></li>
+                    <li><a href="barrie.html">Barrie</a></li>
+                    <li><a href="simcoe-county.html">Simcoe County</a></li>
+                    <li><a href="muskoka.html">Muskoka</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:705-555-0123">705-555-0123</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#fa918893898e9f94ba91979795888e9d9b9d9fd4999b"><span class="__cf_email__" data-cfemail="2249504b5156474c62494f4f4d5056454345470c4143">[email&#160;protected]</span></a></li>
+                    <li><a href="https://instagram.com/kristen.mancini_">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 KM Mortgage. Kristen Mancini, Mortgage Agent. BRX Mortgage Inc.</span>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+    </footer>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelec

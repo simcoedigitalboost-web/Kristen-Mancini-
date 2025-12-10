@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Renewals | KM Mortgage - Orillia & Barrie</title>
+    <meta name="description" content="Mortgage renewal in Orillia or Barrie? Don't just sign what your bank sends. Let me shop 50+ lenders to find you a better rate.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --charcoal: #1a1a1a;
+            --warm-white: #f8f6f3;
+            --cream: #efe9e1;
+            --gold: #c4a44e;
+            --gold-bright: #d4b85e;
+            --terracotta: #c17f59;
+            --sage: #7d8c7a;
+            --text: #2d2d2d;
+            --text-light: #6b6b6b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--warm-white);
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: var(--black);
+            padding: 0.85rem 1.75rem;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--warm-white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+        }
+
+        .nav-links { display: flex; gap: 1.25rem; list-style: none; }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--black) !important;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover { background: var(--gold-bright) !important; }
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .dropdown-toggle::after {
+            content: '';
+            border: solid rgba(255,255,255,0.7);
+            border-width: 0 1.5px 1.5px 0;
+            padding: 2.5px;
+            transform: rotate(45deg);
+            margin-top: -2px;
+            transition: transform 0.2s;
+        }
+
+        .dropdown:hover .dropdown-toggle::after {
+            transform: rotate(-135deg);
+            margin-top: 2px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--black);
+            border-radius: 16px;
+            padding: 0.75rem 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1.5rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--gold);
+            background: rgba(255,255,255,0.05);
+        }
+
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--warm-white);
+            margin: 6px 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+                @media (max-width: 900px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: var(--black);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1.5rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            .nav-links.active { opacity: 1; visibility: visible; }
+            .nav-links > li > a { font-size: 1.5rem; }
+            .nav-cta { padding: 1rem 2rem; font-size: 1.25rem; }
+            
+            .dropdown-toggle::after { display: none; }
+            
+            .dropdown-menu {
+                position: static;
+                transform: none;
+                background: transparent;
+                box-shadow: none;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0;
+                opacity: 1;
+                visibility: visible;
+                transition: max-height 0.3s ease;
+            }
+            
+            .dropdown.open .dropdown-menu {
+                max-height: 300px;
+                padding: 0.5rem 0;
+            }
+            
+            .dropdown-menu a {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+        }
+
+        .hero {
+            padding: 10rem 4rem 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--terracotta);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--terracotta);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            color: var(--black);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--gold); }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        .content-section {
+            padding: 5rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .stat-highlight {
+            background: var(--cream);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 3rem 0;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-text h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-text p {
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+
+        .timeline {
+            margin: 4rem 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-time {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+
+        .cta {
+            background: var(--black);
+            padding: 8rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            color: var(--warm-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta h2 em { color: var(--gold); font-style: italic; }
+
+        .cta p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.15rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            padding: 1.25rem 2.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-bright);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s;
+        }
+
+        .btn-primary:hover svg { transform: translateX(4px); }
+
+        footer {
+            background: var(--charcoal);
+            padding: 5rem 4rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .logo {
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .footer-column h4 {
+            color: var(--warm-white);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 0.75rem; }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover { color: var(--gold); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 8rem 2rem 4rem; }
+            .content-section { padding: 3rem 2rem; }
+            .stat-highlight { flex-direction: column; text-align: center; gap: 1.5rem; }
+            .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .cta { padding: 5rem 2rem; }
+            footer { padding: 4rem 2rem 2rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+        <nav>
+        <a href="index.html" class="logo">KM Mortgage</a>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="services.html" class="dropdown-toggle">Services</a>
+                <ul class="dropdown-menu">
+                    <li><a href="first-time-buyers.html">First-Time Buyers</a></li>
+                    <li><a href="self-employed.html">Self-Employed</a></li>
+                    <li><a href="renewals.html">Renewals</a></li>
+                    <li><a href="refinancing.html">Refinancing</a></li>
+                    <li><a href="second-homes.html">Second Homes</a></li>
+                    <li><a href="new-construction.html">New Construction</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="orillia.html" class="dropdown-toggle">Areas</a>
+                <ul class="dropdown-menu">
+                    <li><a href="orillia.html">Orillia</a></li>
+                    <li><a href="barrie.html">Barrie</a></li>
+                    <li><a href="simcoe-county.html">Simcoe County</a></li>
+                    <li><a href="muskoka.html">Muskoka</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html" class="nav-cta">Let's Talk</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="section-tag">Mortgage Renewals</div>
+        <h1>Don't just <em>sign</em> what they send</h1>
+        <p class="hero-description">Your bank is counting on you to accept their renewal offer without shopping around. That's great for them—not so great for you. I can usually find you a better deal.</p>
+    </section>
+
+    <section class="content-section">
+        <h2>The renewal trap</h2>
+        <p>About 120 days before your mortgage matures, you'll get a letter from your lender with a renewal offer. Most people sign it and send it back without a second thought. After all, it's easy—no paperwork, no hassle.</p>
+        <p>But here's what they don't tell you: that offer is almost never their best rate. They're hoping you'll value convenience over savings. And over a 5-year term, even a small rate difference can cost you thousands.</p>
+
+        <div class="stat-highlight">
+            <div class="stat-number">70%</div>
+            <div class="stat-text">
+                <h3>of Canadians just sign</h3>
+                <p>Seven out of ten homeowners accept their lender's first renewal offer without negotiating or shopping around.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2>When to start thinking about renewal</h2>
+        <p>The best time to start shopping your renewal is 4-6 months before your maturity date. This gives us time to explore options without rushing—and lets you lock in a rate while we shop.</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-time">6 months</div>
+                <div class="timeline-content">
+                    <h3>Reach out</h3>
+                    <p>Contact me and we'll review your current mortgage and discuss your goals for the next term.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">4-5 months</div>
+                <div class="timeline-content">
+                    <h3>Shop the market</h3>
+                    <p>I'll gather rates from my lender network and compare them against what your current lender is offering.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">3 months</div>
+                <div class="timeline-content">
+                    <h3>Lock in your rate</h3>
+                    <p>Once we find the best option, we can hold that rate for up to 120 days while we finalize details.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">Maturity</div>
+                <div class="timeline-content">
+                    <h3>Seamless transition</h3>
+                    <p>Whether you stay or switch, I'll coordinate everything so your mortgage continues without interruption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2>Switching is easier than you think</h2>
+        <p>Worried about the hassle of changing lenders? Don't be. In most cases, the new lender covers all the legal and administrative costs. You get a better rate without paying a dime for the switch.</p>
+        <p>And if staying with your current lender actually is the best option? That's fine too. At least you'll know you're getting a competitive rate—not just the first number they threw at you.</p>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Renewal coming up? <em>Let's talk.</em></h2>
+            <p>Send me your renewal offer and I'll tell you if you can do better. No cost, no obligation.</p>
+            <a href="contact.html" class="btn-primary">
+                Get a Second Opinion
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">KM Mortgage</a>
+                <p>Helping families in Orillia, Barrie, and Simcoe County feel confident about their mortgage decisions.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="first-time-buyers.html">First-Time Buyers</a></li>
+                    <li><a href="self-employed.html">Self-Employed</a></li>
+                    <li><a href="renewals.html">Renewals</a></li>
+                    <li><a href="refinancing.html">Refinancing</a></li>
+                    <li><a href="second-homes.html">Second Homes</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Areas</h4>
+                <ul>
+                    <li><a href="orillia.html">Orillia</a></li>
+                    <li><a href="barrie.html">Barrie</a></li>
+                    <li><a href="simcoe-county.html">Simcoe County</a></li>
+                    <li><a href="muskoka.html">Muskoka</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:705-555-0123">705-555-0123</a></li>
+                    <li><a href="mailto:kristen@kmmortgage.ca">kristen@kmmortgage.ca</a></li>
+                    <li><a href="https://instagram.com/kristen.mancini_">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 KM Mortgage. Kristen Mancini, Mortgage Agent. BRX Mortgage Inc.</span>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+    </footer>
+
+        <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Mobile dropdown toggle
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 900) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('open');
+                }
+            });
+        });
+
+        // Close menu when clicking a non-dropdown link
+        navLinks.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                dropdowns.forEach(d => d.classList.remove('open'));
+            });
+        });
+    </script>
+</body>
+</html>

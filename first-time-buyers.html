@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First-Time Home Buyers | KM Mortgage - Orillia & Barrie Mortgage Agent</title>
+    <meta name="description" content="First-time home buyer in Orillia or Barrie? Access up to $40,000 in grants, rebates, and incentives. Kristen Mancini helps you navigate every step.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --charcoal: #1a1a1a;
+            --warm-white: #f8f6f3;
+            --cream: #efe9e1;
+            --gold: #c4a44e;
+            --gold-bright: #d4b85e;
+            --terracotta: #c17f59;
+            --sage: #7d8c7a;
+            --text: #2d2d2d;
+            --text-light: #6b6b6b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--warm-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: var(--black);
+            padding: 0.85rem 1.75rem;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--warm-white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.25rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--black) !important;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-bright) !important;
+        }
+
+        /* Mobile Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .dropdown-toggle::after {
+            content: '';
+            border: solid rgba(255,255,255,0.7);
+            border-width: 0 1.5px 1.5px 0;
+            padding: 2.5px;
+            transform: rotate(45deg);
+            margin-top: -2px;
+            transition: transform 0.2s;
+        }
+
+        .dropdown:hover .dropdown-toggle::after {
+            transform: rotate(-135deg);
+            margin-top: 2px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--black);
+            border-radius: 16px;
+            padding: 0.75rem 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1.5rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--gold);
+            background: rgba(255,255,255,0.05);
+        }
+
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--warm-white);
+            margin: 6px 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--black);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+
+            .nav-cta {
+                padding: 1rem 2rem;
+                font-size: 1.25rem;
+            }
+            .dropdown-toggle::after { display: none; }
+            
+            .dropdown-menu {
+                position: static;
+                transform: none;
+                background: transparent;
+                box-shadow: none;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0;
+                opacity: 1;
+                visibility: visible;
+                transition: max-height 0.3s ease;
+                min-width: auto;
+            }
+            
+            .dropdown.open .dropdown-menu {
+                max-height: 300px;
+                padding: 0.5rem 0;
+            }
+            
+            .dropdown-menu a {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 4rem 6rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            max-width: 1500px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--terracotta);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--terracotta);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+            font-weight: 500;
+            color: var(--black);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--warm-white);
+            padding: 1.1rem 2.25rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--charcoal);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s;
+        }
+
+        .btn-primary:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Hero Savings Stack */
+        .hero-savings {
+            position: relative;
+        }
+
+        .savings-stack {
+            position: relative;
+            height: 450px;
+        }
+
+        .savings-card {
+            position: absolute;
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 280px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .savings-card:nth-child(1) {
+            top: 0;
+            left: 0;
+            transform: rotate(-6deg);
+            z-index: 3;
+        }
+
+        .savings-card:nth-child(2) {
+            top: 80px;
+            left: 140px;
+            transform: rotate(3deg);
+            z-index: 2;
+            background: var(--charcoal);
+            color: var(--warm-white);
+        }
+
+        .savings-card:nth-child(2) h3 {
+            color: var(--warm-white);
+        }
+
+        .savings-card:nth-child(2) p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .savings-card:nth-child(3) {
+            top: 180px;
+            left: 40px;
+            transform: rotate(-2deg);
+            z-index: 1;
+        }
+
+        .savings-card:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 10;
+        }
+
+        .savings-card .amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .savings-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .savings-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Programs Section */
+        .programs {
+            background: var(--charcoal);
+            padding: 8rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .programs::before {
+            content: 'Programs';
+            position: absolute;
+            bottom: -5%;
+            right: -5%;
+            font-family: 'Playfair Display', serif;
+            font-size: 15vw;
+            font-weight: 700;
+            color: rgba(255,255,255,0.02);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .programs-header {
+            max-width: 600px;
+            margin-bottom: 4rem;
+        }
+
+        .programs-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            color: var(--warm-white);
+            margin-bottom: 1rem;
+        }
+
+        .programs-header p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.1rem;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+        }
+
+        .program-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gold);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .program-card:hover {
+            background: rgba(255,255,255,0.06);
+            transform: translateX(10px);
+        }
+
+        .program-card:hover::before {
+            opacity: 1;
+        }
+
+        .program-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--warm-white);
+            margin-bottom: 0.75rem;
+        }
+
+        .program-card .highlight {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .program-card p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Know Before Section */
+        .know-before {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .know-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .know-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .know-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .know-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .know-number {
+            width: 80px;
+            height: 80px;
+            background: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .know-content h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+        }
+
+        .know-content p {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Why Agent Section */
+        .why-agent {
+            background: var(--cream);
+            padding: 8rem 4rem;
+        }
+
+        .why-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .why-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .why-content > p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .why-list {
+            list-style: none;
+        }
+
+        .why-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .why-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .why-check {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            background: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .why-check svg {
+            width: 14px;
+            height: 14px;
+            color: var(--gold);
+        }
+
+        .why-list strong {
+            display: block;
+            color: var(--black);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .why-list span {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .why-visual {
+            position: relative;
+        }
+
+        .why-card {
+            background: var(--black);
+            border-radius: 24px;
+            padding: 3rem;
+            color: var(--warm-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 50%);
+            opacity: 0.1;
+        }
+
+        .why-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .why-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-card p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .why-card .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .why-card .btn-primary:hover {
+            background: var(--gold-bright);
+        }
+
+        /* Testimonial */
+        .testimonial-section {
+            padding: 6rem 4rem;
+            background: var(--warm-white);
+        }
+
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--black);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            position: absolute;
+            top: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 6rem;
+            color: var(--cream);
+            font-family: 'Playfair Display', serif;
+            z-index: 0;
+            line-height: 1;
+        }
+
+        .testimonial-quote span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .testimonial-detail {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--black);
+            padding: 8rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            color: var(--warm-white);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .cta h2 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.15rem;
+            margin-bottom: 3rem;
+        }
+
+        .cta .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            font-size: 1rem;
+            padding: 1.25rem 2.75rem;
+        }
+
+        .cta .btn-primary:hover {
+            background: var(--gold-bright);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 5rem 4rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .logo {
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .footer-column h4 {
+            color: var(--warm-white);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 8rem 2rem 4rem;
+            }
+
+            .hero-savings {
+                display: none;
+            }
+
+            .programs {
+                padding: 5rem 2rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .know-before {
+                padding: 5rem 2rem;
+            }
+
+            .know-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-agent {
+                padding: 5rem 2rem;
+            }
+
+            .why-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.75rem 1.5rem;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .know-item {
+                grid-template-columns: 1fr;
+            }
+
+            .know-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .testimonial-section {
+                padding: 4rem 2rem;
+            }
+
+            .cta {
+                padding: 5rem 2rem;
+            }
+
+            footer {
+                padding: 4rem 2rem 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav>
+        <a href="index.html" class="logo">KM Mortgage</a>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="services.html" class="dropdown-toggle">Services</a>
+                <ul class="dropdown-menu">
+                    <li><a href="first-time-buyers.html">First-Time Buyers</a></li>
+                    <li><a href="self-employed.html">Self-Employed</a></li>
+                    <li><a href="renewals.html">Renewals</a></li>
+                    <li><a href="refinancing.html">Refinancing</a></li>
+                    <li><a href="second-homes.html">Second Homes</a></li>
+                    <li><a href="new-construction.html">New Construction</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="orillia.html" class="dropdown-toggle">Areas</a>
+                <ul class="dropdown-menu">
+                    <li><a href="orillia.html">Orillia</a></li>
+                    <li><a href="barrie.html">Barrie</a></li>
+                    <li><a href="simcoe-county.html">Simcoe County</a></li>
+                    <li><a href="muskoka.html">Muskoka</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html" class="nav-cta">Let's Talk</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="section-tag">First-Time Home Buyers</div>
+            <h1>You could save over <em>$40,000</em> on your first home</h1>
+            <p class="hero-description">Most first-time buyers leave money on the table because nobody told them about the grants, rebates, and incentives available to them. I make sure that doesn't happen to you.</p>
+            <a href="contact.html" class="btn-primary">
+                Find Out What You Qualify For
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </a>
+        </div>
+        <div class="hero-savings">
+            <div class="savings-stack">
+                <div class="savings-card">
+                    <div class="amount">$40k+</div>
+                    <h3>Total Savings</h3>
+                    <p>From rebates, incentives, tax breaks, and deductions</p>
+                </div>
+                <div class="savings-card">
+                    <div class="amount">$15k</div>
+                    <h3>Down Payment Grant</h3>
+                    <p>Even if you don't have savings</p>
+                </div>
+                <div class="savings-card">
+                    <div class="amount">$10k</div>
+                    <h3>Home Warranty</h3>
+                    <p>Protection from day one</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs">
+        <div class="programs-header">
+            <div class="section-tag" style="color: var(--gold);">Programs & Incentives</div>
+            <h2>Programs I'll help you access</h2>
+            <p>These are real programs with real money—and most buyers don't even know they exist.</p>
+        </div>
+        <div class="programs-grid">
+            <div class="program-card">
+                <h3>First-Time Home Buyer Incentive</h3>
+                <span class="highlight">5-10% toward your down payment</span>
+                <p>The federal government will contribute 5-10% of your home's purchase price toward your down payment through a shared equity program. You pay it back when you sell—but it can make the difference between buying now or waiting years.</p>
+            </div>
+            <div class="program-card">
+                <h3>Home Buyers' Plan (HBP)</h3>
+                <span class="highlight">Up to $60,000 from your RRSP</span>
+                <p>Withdraw up to $60,000 from your RRSP tax-free to use as a down payment. Buying with a partner? That's up to $120,000 combined. You have 15 years to repay it to yourself.</p>
+            </div>
+            <div class="program-card">
+                <h3>First-Time Home Buyers' Tax Credit</h3>
+                <span class="highlight">Up to $1,500 back at tax time</span>
+                <p>A $10,000 non-refundable tax credit that puts up to $1,500 directly back in your pocket when you file your taxes the year you buy.</p>
+            </div>
+            <div class="program-card">
+                <h3>Land Transfer Tax Rebate</h3>
+                <span class="highlight">Up to $4,000 rebate in Ontario</span>
+                <p>Ontario offers first-time buyers a rebate on land transfer tax—up to $4,000 that you don't have to pay at closing.</p>
+            </div>
+            <div class="program-card">
+                <h3>Cash-Back Incentives</h3>
+                <span class="highlight">Lender programs for closing costs</span>
+                <p>Certain lenders offer cash-back programs that can help cover your closing costs or fund immediate renovations. I know which ones offer the best deals.</p>
+            </div>
+            <div class="program-card">
+                <h3>New to Canada Program</h3>
+                <span class="highlight">Options for newcomers</span>
+                <p>Moved to Canada recently? There are mortgage programs specifically designed for newcomers—even without established Canadian credit history. I'll help you find the right fit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Know Before Section -->
+    <section class="know-before">
+        <div class="know-header">
+            <div class="section-tag">Before You Start</div>
+            <h2>What you need to know</h2>
+        </div>
+        <div class="know-grid">
+            <div class="know-item">
+                <div class="know-number">1</div>
+                <div class="know-content">
+                    <h3>Your credit score matters—but it's not everything</h3>
+                    <p>Yes, your credit score affects your rate. But if yours isn't perfect, don't panic. I'll walk you through exactly what lenders are looking for and give you practical tips to improve your score before you apply.</p>
+                </div>
+            </div>
+            <div class="know-item">
+                <div class="know-number">2</div>
+                <div class="know-content">
+                    <h3>The stress test is real</h3>
+                    <p>Every buyer has to qualify at a higher rate than they'll actually pay. I'll explain how this works and what it means for your budget so there are no surprises when we run the numbers.</p>
+                </div>
+            </div>
+            <div class="know-item">
+                <div class="know-number">3</div>
+                <div class="know-content">
+                    <h3>Mortgage insurance vs. life insurance</h3>
+                    <p>Your lender will offer you mortgage insurance at closing. It's not the same as life insurance, and it's not always the best option. I'll explain the difference so you can make an informed decision.</p>
+                </div>
+            </div>
+            <div class="know-item">
+                <div class="know-number">4</div>
+                <div class="know-content">
+                    <h3>Pre-approval gives you power</h3>
+                    <p>Walking into a showing with a pre-approval letter tells sellers you're serious. It also locks in your rate for up to 120 days, protecting you if rates go up while you're shopping.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Agent Section -->
+    <section class="why-agent">
+        <div class="why-container">
+            <div class="why-content">
+                <div class="section-tag">Why Work With Me</div>
+                <h2>Your bank works for the bank. I work for you.</h2>
+                <p>Your bank only offers their products. I work with dozens of lenders—big banks, credit unions, and alternative lenders—to find the best rate and terms for your specific situation.</p>
+                <ul class="why-list">
+                    <li>
+                        <span class="why-check">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                        <div>
+                            <strong>No cost to you</strong>
+                            <span>Lenders pay my fee, so you get expert guidance at no extra charge.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="why-check">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                        <div>
+                            <strong>50+ lender options</strong>
+                            <span>More options means better rates and products tailored to you.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="why-check">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                        <div>
+                            <strong>Local expertise</strong>
+                            <span>I know Orillia, Barrie, and Simcoe County. I'm here when you need me.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="why-visual">
+                <div class="why-card">
+                    <div class="why-card-content">
+                        <h3>Ready to find out what you can afford?</h3>
+                        <p>Let's talk. I'll answer your questions, run through the programs you might qualify for, and give you a clear picture of your buying power—no pressure, no obligation.</p>
+                        <a href="contact.html" class="btn-primary">
+                            Get Your Free Consultation
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Don't leave <em>money</em> on the table</h2>
+            <p>Most first-time buyers miss out on thousands of dollars simply because nobody told them what was available. Let's make sure that doesn't happen to you.</p>
+            <a href="contact.html" class="btn-primary">
+                Book Your Free Consultation
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">KM Mortgage</a>
+                <p>Helping families in Orillia, Barrie, and Simcoe County feel confident about their mortgage decisions.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="first-time-buyers.html">First-Time Buyers</a></li>
+                    <li><a href="self-employed.html">Self-Employed</a></li>
+                    <li><a href="renewals.html">Renewals</a></li>
+                    <li><a href="refinancing.html">Refinancing</a></li>
+                    <li><a href="second-homes.html">Second Homes</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Areas</h4>
+                <ul>
+                    <li><a href="orillia.html">Orillia</a></li>
+                    <li><a href="barrie.html">Barrie</a></li>
+                    <li><a href="simcoe-county.html">Simcoe County</a></li>
+                    <li><a href="muskoka.html">Muskoka</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:705-555-0123">705-555-0123</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#adc6dfc4ded9c8c3edc6c0c0c2dfd9cacccac883cecc"><span class="__cf_email__" data-cfemail="0c677e657f7869624c676161637e786b6d6b69226f6d">[email&#160;protected]</span></a></li>
+                    <li><a href="https://instagram.com/kristen.mancini_">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 KM Mortgage. Kristen Mancini, Mortgage Agent. BRX Mortgage Inc.</span>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+    </footer>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelec
