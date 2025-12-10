@@ -831,6 +831,7 @@
                     <li><a href="muskoka.html">Muskoka</a></li>
                 </ul>
             </li>
+            <li><a href="contact.html">Contact</a></li>
             <li><a href="contact.html" class="nav-cta">Let's Talk</a></li>
         </ul>
     </nav>
@@ -974,7 +975,7 @@
                 <h4>Contact</h4>
                 <ul>
                     <li><a href="tel:705-555-0123">705-555-0123</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#fa918893898e9f94ba91979795888e9d9b9d9fd4999b"><span class="__cf_email__" data-cfemail="2249504b5156474c62494f4f4d5056454345470c4143">[email&#160;protected]</span></a></li>
+                    <li><a href="mailto:kristen@kmmortgage.ca">kristen@kmmortgage.ca</a></li>
                     <li><a href="https://instagram.com/kristen.mancini_">Instagram</a></li>
                 </ul>
             </div>
@@ -984,13 +985,36 @@
             <a href="privacy.html">Privacy Policy</a>
         </div>
     </footer>
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+    <script>
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
+        const dropdowns = document.querySelectorAll('.dropdown');
 
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
 
-        navLinks.querySelec
+        // Mobile dropdown toggle
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 900) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('open');
+                }
+            });
+        });
+
+        // Close menu when clicking a non-dropdown link
+        navLinks.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                dropdowns.forEach(d => d.classList.remove('open'));
+            });
+        });
+    </script>
+</body>
+</html>
