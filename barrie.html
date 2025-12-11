@@ -62,12 +62,14 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
             list-style: none;
             margin-top: 0.5rem;
+            pointer-events: none;
         }
 
         .dropdown:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
         }
 
         .dropdown-menu li {
@@ -211,7 +213,10 @@
         <ul class="nav-links">
             <li><a href="about.html">About</a></li>
             <li class="dropdown">
-                <a href="services.html" class="dropdown-toggle">Services</a>
+                <div class="dropdown-header">
+                    <a href="services.html">Services</a>
+                    <button class="dropdown-toggle" aria-label="Toggle services menu"></button>
+                </div>
                 <ul class="dropdown-menu">
                     <li><a href="first-time-buyers.html">First-Time Buyers</a></li>
                     <li><a href="self-employed.html">Self-Employed</a></li>
@@ -222,7 +227,10 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="orillia.html" class="dropdown-toggle">Areas</a>
+                <div class="dropdown-header">
+                    <a href="orillia.html">Areas</a>
+                    <button class="dropdown-toggle" aria-label="Toggle areas menu"></button>
+                </div>
                 <ul class="dropdown-menu">
                     <li><a href="orillia.html">Orillia</a></li>
                     <li><a href="barrie.html">Barrie</a></li>
@@ -364,26 +372,30 @@
                     e.stopPropagation();
                     menuToggle.classList.toggle('active');
                     navLinks.classList.toggle('active');
-                    console.log('Menu clicked, active:', navLinks.classList.contains('active'));
                 });
             }
 
             dropdowns.forEach(function(dropdown) {
-                var toggle = dropdown.querySelector('.dropdown-toggle');
+                var toggle = dropdown.querySelector('button.dropdown-toggle');
                 if (toggle) {
                     toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
                         if (window.innerWidth <= 900) {
-                            e.preventDefault();
                             dropdown.classList.toggle('open');
                         }
                     });
                 }
             });
 
-            document.querySelectorAll('.nav-links a:not(.dropdown-toggle)').forEach(function(link) {
+            // Close mobile menu when any link is clicked
+            document.querySelectorAll('.nav-links a').forEach(function(link) {
                 link.addEventListener('click', function() {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
+                    if (window.innerWidth <= 900) {
+                        menuToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                        dropdowns.forEach(function(d) { d.classList.remove('open'); });
+                    }
                 });
             });
         });
