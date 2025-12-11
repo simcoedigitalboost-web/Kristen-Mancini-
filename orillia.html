@@ -98,22 +98,31 @@
         .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
                 @media (max-width: 900px) {
-            .menu-toggle { display: block; position: relative; z-index: 9999; }
+            nav {
+                transform: none;
+                left: 1rem;
+                right: 1rem;
+                width: auto;
+            }
+            .menu-toggle { display: block; position: relative; z-index: 100001; }
             .nav-links {
                 display: flex;
                 position: fixed;
-                z-index: 99999;
+                z-index: 100000;
                 top: 0; left: 0; right: 0; bottom: 0;
-                background: var(--black);
+                width: 100vw;
+                height: 100vh;
+                background: #0a0a0a;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 1.5rem;
+                gap: 2rem;
                 opacity: 0;
                 visibility: hidden;
-                transition: all 0.3s ease;
+                pointer-events: none;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
             }
-            .nav-links.active { opacity: 1; visibility: visible; }
+            .nav-links.active { opacity: 1; visibility: visible; pointer-events: auto; }
             .nav-links > li > a { font-size: 1.5rem; }
             .nav-cta { padding: 1rem 2rem; font-size: 1.25rem; }
             
@@ -211,6 +220,7 @@
             <span></span>
         </button>
         <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li class="dropdown">
                 <div class="dropdown-header">
@@ -228,7 +238,7 @@
             </li>
             <li class="dropdown">
                 <div class="dropdown-header">
-                    <a href="orillia.html">Areas</a>
+                    <a href="areas.html">Areas</a>
                     <button class="dropdown-toggle" aria-label="Toggle areas menu"></button>
                 </div>
                 <ul class="dropdown-menu">
@@ -347,7 +357,7 @@
                 <h4>Contact</h4>
                 <ul>
                     <li><a href="tel:705-555-0123">705-555-0123</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#4229302b3136272c02292f2f2d3036252325276c2123"><span class="__cf_email__" data-cfemail="9bf0e9f2e8effef5dbf0f6f6f4e9effcfafcfeb5f8fa">[email&#160;protected]</span></a></li>
+                    <li><a href="mailto:kristen@KMmortgage.ca">kristen@KMmortgage.ca</a></li>
                     <li><a href="https://instagram.com/kristen.mancini_">Instagram</a></li>
                 </ul>
             </div>
